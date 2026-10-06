@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pomodoro &amp; Mola Zamanlayıcısı</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='10' cy='16' r='7' fill='%23ff3b30'/%3E%3Ccircle cx='18' cy='11' r='6' fill='%23ffd60a'/%3E%3Ccircle cx='22' cy='20' r='7' fill='%236c4dff'/%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Caveat:wght@600&family=Manrope:wght@500;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div class="stage" aria-hidden="true">
+      <span class="blob blob-coral"></span>
+      <span class="blob blob-gold"></span>
+      <span class="blob blob-mint"></span>
+      <span class="blob blob-violet"></span>
+      <span class="blob blob-pink"></span>
+    </div>
+
+    <main class="app">
+      <header class="hero">
+        <h1>
+          <span class="ink-hot">Pomodoro</span>
+          <span class="ink-soft">&amp;</span>
+          <span class="ink-mint">Mola</span>
+          <span class="ink-violet">Zamanlayıcısı</span>
+          <span class="version">v1.0</span>
+        </h1>
+      </header>
+
+      <section class="panel" aria-labelledby="timer-heading">
+        <h2 id="timer-heading" class="visually-hidden">Sayaç</h2>
+
+        <div class="modes" role="group" aria-label="Mod seçimi">
+          <button type="button" class="mode is-active" data-mode="pomodoro" aria-pressed="true">
+            <span class="mode-name">🎯 Pomodoro</span>
+            <span class="mode-meta">25 dakika</span>
+          </button>
+          <button type="button" class="mode" data-mode="short" aria-pressed="false">
+            <span class="mode-name">☕ Kısa Mola</span>
+            <span class="mode-meta">5 dakika</span>
+          </button>
+          <button type="button" class="mode" data-mode="long" aria-pressed="false">
+            <span class="mode-name">🌴 Uzun Mola</span>
+            <span class="mode-meta">15 dakika</span>
+          </button>
+        </div>
+
+        <div class="timer">
+          <svg class="ring" viewBox="0 0 280 280" aria-hidden="true">
+            <defs>
+              <linearGradient id="grad-pomodoro" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#ff3b30" />
+                <stop offset="55%" stop-color="#ff7a18" />
+                <stop offset="100%" stop-color="#ffd60a" />
+              </linearGradient>
+              <linearGradient id="grad-short" x1="0%" y1="100%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#00b894" />
+                <stop offset="100%" stop-color="#7dff6b" />
+              </linearGradient>
+              <linearGradient id="grad-long" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#6c4dff" />
+                <stop offset="100%" stop-color="#ff4fa3" />
+              </linearGradient>
+            </defs>
+            <circle class="ring-track" cx="140" cy="140" r="120"></circle>
+            <circle class="ring-progress" id="ring" cx="140" cy="140" r="120" stroke="url(#grad-pomodoro)"></circle>
+          </svg>
+          <div class="timer-face">
+            <p class="timer-time" id="time" aria-live="polite">25:00</p>
+            <p class="timer-label" id="mode-label">Odaklanma</p>
+          </div>
+        </div>
+
+        <p class="status" id="status" aria-live="polite">Hazır. Başlat ile odaklanmaya başlayın.</p>
+
+        <div class="controls" role="group" aria-label="Sayaç kontrolleri">
+          <button type="button" class="btn btn-primary" id="start">Başlat</button>
+          <button type="button" class="btn btn-pause" id="pause" disabled>Durdur</button>
+          <button type="button" class="btn btn-ghost" id="reset">Sıfırla</button>
+        </div>
+      </section>
+
+      <section class="stats" aria-labelledby="stats-heading">
+        <div class="stats-head">
+          <h2 id="stats-heading">İstatistikler</h2>
+          <button type="button" class="btn btn-ghost btn-small" id="reset-stats">İstatistikleri Sıfırla</button>
+        </div>
+        <div class="stats-grid">
+          <article class="stat stat-count">
+            <p class="stat-label">Tamamlanan Odaklanma Sayısı</p>
+            <p class="stat-value" id="completed">0</p>
+          </article>
+          <article class="stat stat-time">
+            <p class="stat-label">Toplam Çalışma Süresi</p>
+            <p class="stat-value"><span id="minutes">0</span> <span class="stat-unit">dk</span></p>
+          </article>
+        </div>
+      </section>
+
+      <p class="signature">Aslıhan Boyraz</p>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>
